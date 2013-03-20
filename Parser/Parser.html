@@ -1,0 +1,27 @@
+<html>
+	<body>
+		<?php 
+		
+		if($_POST["file"][error] > 0){
+			echo $_POST["file"][error];
+			}
+		else{
+
+			$file_dir = $_POST["file"] ;
+			$file=fopen($file_dir,"r");
+			$vars;
+			$tipos;
+			$i=0;
+			
+			do{
+				$linea = fgets($file);
+				sscanf($linea,"	private %s %s;",$tipos[$i] , $vars[$i]);
+				if ($tipos[$i]!=""){ echo($tipos[$i] . " " . $vars[$i] . "\n" );$i++; }
+				}
+			while (!feof($file));
+			
+			fclose($file);
+		
+?>
+	</body>
+</html>
